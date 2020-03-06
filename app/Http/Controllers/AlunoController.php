@@ -32,29 +32,64 @@ class AlunoController extends Controller
     public function store(Request $request)
     {
         $alunos = session('alunos');
-        $dados = $request->all();
-        dd($dados);
+        $id = end($alunos)['id'] + 1;
+        $nome = $request->nome;
+        $cidade = $request->cidade;
+        $estado = $request->estado;
+        
+        $dados = [
+            'id' => $id,
+            'nome' => $nome,
+            'cidade' => $cidade,
+            'estado' => $estado
+        ];
+
+        $alunos[] = $dados;
+        session(['alunos'=>$alunos]);
+
+        return redirect()->route('alunos.index');
     }
 
     public function show($id)
     {
-        //
+        $alunos = session('alunos');
+        $index = $this->getIndex($id, $alunos);
+        $aluno = $alunos[$index];
+
+        return view('alunos.view', compact(['aluno']));
     }
 
     public function edit($id)
     {
-        return view('alunos.edit');
+        $alunos = session('alunos');
+        $index = $this->getIndex($id, $alunos);
+        $aluno = $alunos[$index];
 
+        return view('alunos.edit', compact(['aluno']));
     }
 
     public function update(Request $request, $id)
     {
-        //
+        $alunos = session('alunos');
+        $index = $this->getIndex($id, $alunos);
+        $alunos[$index]['nome'] = $request->nome;
+        $alunos[$index]['cidade'] = $request->cidade;
+        $alunos[$index]['estado'] = $request->estado;
+        
+        session(['alunos'=>$alunos]);
+
+        return redirect()->route('alunos.index');
     }
 
     public function destroy($id)
     {
-        //
+        $alunos = session('alunos');
+        $index = $this->getIndex($id, $alunos);
+        array_splice($alunos, $index, 1);
+
+        session(['alunos'=>$alunos]);
+
+        return redirect()->route('alunos.index');
     }
 
     private function getIndex($id, $alunos)

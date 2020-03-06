@@ -26,22 +26,36 @@
         
         <div class="container" style="margin-top: 30px">
             <div class="row">
-                <form class="col s12">
+                <form class="col s12" action="{{ route('alunos.update', $aluno['id']) }}" method="POST">
+                    @csrf
+                    @method('PUT')
                     <div class="row">
                         <div class="input-field col s12">
-                            <input placeholder="Nome" id="nome" type="text" class="validate">
+                            <input placeholder="Nome" 
+                                name="nome" 
+                                type="text" 
+                                value="{{ $aluno['nome'] }}"
+                                class="validate">
                             <label for="nome">Nome</label>
                         </div>
                     </div>
                     <div class="row">
                         <div class="input-field col s12">
-                            <input placeholder="Cidade" id="cidade" type="text" class="validate">
+                            <input placeholder="Cidade" 
+                                name="cidade" 
+                                type="text" 
+                                value="{{ $aluno['cidade'] }}"
+                                class="validate">
                             <label for="cidade">Cidade</label>
                         </div>
                     </div>
                     <div class="row">
                         <div class="input-field col s12">
-                            <input placeholder="Estado" id="estado" type="text" class="validate">
+                            <input placeholder="Estado" 
+                                name="estado" 
+                                type="text" 
+                                value="{{ $aluno['estado'] }}"
+                                class="validate">
                             <label for="estado">Estado</label>
                         </div>
                     </div>

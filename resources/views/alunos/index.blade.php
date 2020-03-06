@@ -37,6 +37,8 @@
                         <th>Cidade</th>
                         <th>Estado</th>
                         <th></th>
+                        <th></th>
+                        <th></th>
                     </tr>
                 </thead>
 
@@ -51,11 +53,30 @@
                                     <i class="material-icons" style="font-size: 17px; margin-top: 3px">create</i>
                                 </a>
                             </td>
+                            <td>
+                                <a href="{{ route('alunos.show', $aluno['id']) }}"> 
+                                    <i class="material-icons" style="font-size: 17px; margin-top: 3px">remove_red_eye</i>
+                                </a>
+                            </td>
+                            <td>
+                                <form action="{{ route('alunos.destroy', $aluno['id']) }}" method="POST" id="form{{$aluno['id']}}">
+                                    @csrf
+                                    @method('DELETE')
+                                    <i class="material-icons" style="font-size: 17px; margin-top: 3px" onClick="submitForm({{$aluno['id']}})">delete</i>
+                                </form>
+                            </td>
                         </tr>
                     @endforeach
                 </tbody>
             </table>
         </div>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+
+        <script>
+            function submitForm(id) {
+                console.log('oi')
+                document.getElementById("form" + id).submit();
+            }
+        </script>
     </body>
 </html>
