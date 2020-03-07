@@ -4,7 +4,8 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>Alunos</title>
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">        
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     </head>
 
@@ -15,22 +16,27 @@
         }
     </style>
     <body>
-        <nav>
-            <div class="nav-wrapper green darken-1">
-            <a href="alunos" class="brand-logo center">Alunos</a>
-            <ul id="nav-mobile" class="left hide-on-med-and-down">
-                <li><a href="/">Voltar</a></li>
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <a href="alunos" class="navbar-brand">Alunos</a>
+            <div class="collapse navbar-collapse">
+            <ul id="nav-mobile" class="nav navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a href="/">
+                        <i class="material-icons add_box row" title="Voltar">keyboard_backspace</i>
+                    </a>
+                </li>
             </ul>
             </div>
         </nav>
         
         <div class="container">
-            <div class="row" style="text-align: right; margin-top: 20px">
-                <a class="btn-floating waves-effect waves-light deep-orange darken-2" href="{{ route('alunos.create') }}">
-                    <i class="material-icons">add</i>
+            <div class="row offset-11" style="text-align: right; margin-top: 20px">
+                <a href="{{ route('alunos.create') }}">
+                    <i class="material-icons add_box" title="Adicionar">add_box</i>
                 </a>
+                
             </div>
-            <table style="margin-top: 1rem">
+            <table style="margin-top: 1rem" class="table">
                 <thead>
                     <tr>
                         <th>Nome</th>
@@ -50,19 +56,19 @@
                             <td>{{ $aluno['estado'] }}</td>
                             <td>
                                 <a href="{{ route('alunos.edit', $aluno['id']) }}"> 
-                                    <i class="material-icons" style="font-size: 17px; margin-top: 3px">create</i>
+                                    <i class="material-icons" style="font-size: 17px; margin-top: 3px" title="Editar">create</i>
                                 </a>
                             </td>
                             <td>
                                 <a href="{{ route('alunos.show', $aluno['id']) }}"> 
-                                    <i class="material-icons" style="font-size: 17px; margin-top: 3px">remove_red_eye</i>
+                                    <i class="material-icons" style="font-size: 17px; margin-top: 3px" title="Visualizar">remove_red_eye</i>
                                 </a>
                             </td>
                             <td>
                                 <form action="{{ route('alunos.destroy', $aluno['id']) }}" method="POST" id="form{{$aluno['id']}}">
                                     @csrf
                                     @method('DELETE')
-                                    <i class="material-icons" style="font-size: 17px; margin-top: 3px" onClick="submitForm({{$aluno['id']}})">delete</i>
+                                    <i class="material-icons" style="font-size: 17px; margin-top: 3px" onClick="submitForm({{$aluno['id']}})" title="Remover">delete</i>
                                 </form>
                             </td>
                         </tr>

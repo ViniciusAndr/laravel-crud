@@ -4,7 +4,8 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>Dados do aluno</title>
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">        
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     </head>
 
@@ -15,11 +16,15 @@
         }
     </style>
     <body>
-        <nav>
-            <div class="nav-wrapper green darken-1">
-            <a href="alunos" class="brand-logo center">Dados do aluno</a>
-            <ul id="nav-mobile" class="left hide-on-med-and-down">
-                <li><a href="{{ route('alunos.index') }}">Voltar</a></li>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <a href="alunos" class="navbar-brand">Alunos</a>
+            <div class="collapse navbar-collapse">
+            <ul id="nav-mobile" class="nav navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a href="{{ route('alunos.index')}}">
+                        <i class="material-icons add_box row" title="Voltar">keyboard_backspace</i>
+                    </a>
+                </li>
             </ul>
             </div>
         </nav>
@@ -27,37 +32,37 @@
         <div class="container" style="margin-top: 30px">
             <div class="row">
                 <form class="col s12">
-                    <div class="row">
+                    <div class="form-group">
                         <div class="input-field col s12">
+                            <label for="nome">Nome</label>
                             <input disabled 
                                 placeholder="Nome" 
                                 id="nome" 
                                 type="text" 
                                 value="{{ $aluno['nome'] }}" 
-                                class="validate">
-                            <label for="nome">Nome</label>
+                                class="form-control">
                         </div>
                     </div>
-                    <div class="row">
+                    <div class="form-group">
                         <div class="input-field col s12">
+                            <label for="cidade">Cidade</label>
                             <input disabled 
                                 placeholder="Cidade" 
                                 id="cidade" 
                                 type="text" 
                                 value="{{ $aluno['cidade'] }}"
-                                class="validate">
-                            <label for="cidade">Cidade</label>
+                                class="form-control">
                         </div>
                     </div>
-                    <div class="row">
+                    <div class="form-group">
                         <div class="input-field col s12">
+                            <label for="estado">Estado</label>
                             <input disabled 
                                 placeholder="Estado" 
                                 id="estado" 
                                 type="text" 
                                 value="{{ $aluno['estado'] }}"
-                                class="validate">
-                            <label for="estado">Estado</label>
+                                class="form-control">
                         </div>
                     </div>
                 </form>
